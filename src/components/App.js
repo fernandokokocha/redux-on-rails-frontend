@@ -1,44 +1,44 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { increment, decrement } from '../redux/actions'
+import { connect } from 'react-redux';
+import { increment, decrement } from '../redux/actions';
 
-import Layout from './Layout'
-import Navigation from './Navigation'
-import Home from './Home'
-import Incrementer from './Incrementer'
+import Layout from './Layout';
+import Navigation from './Navigation';
+import Home from './Home';
+import Incrementer from './Incrementer';
 
 const PAGES = {
   HOME: 1,
-  INCREMENTER: 2
+  INCREMENTER: 2,
 };
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: props.initialTab
+      tab: props.initialTab,
     };
-    
-    this.handleSelect = this.handleSelect.bind(this)
-    this.renderContent = this.renderContent.bind(this)
+
+    this.handleSelect = this.handleSelect.bind(this);
+    this.renderContent = this.renderContent.bind(this);
   }
-  
+
   handleSelect(eventKey) {
     this.setState({
-      tab: eventKey
+      tab: eventKey,
     });
   }
-  
+
   renderContent() {
     if (this.state.tab == PAGES.HOME) {
-      return <Home />
+      return <Home />;
     } else if (this.state.tab == PAGES.INCREMENTER) {
-      return <Incrementer />
+      return <Incrementer />;
     } else {
-      return <div>500 Internal Error</div>
+      return <div>500 Internal Error</div>;
     }
   }
-  
+
   render() {
     return (
       <Layout>
@@ -50,7 +50,7 @@ class App extends React.Component {
 }
 
 App.defaultProps = {
-  initialTab: 1
+  initialTab: 1,
 };
 
 export default App;

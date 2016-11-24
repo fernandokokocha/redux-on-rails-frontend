@@ -9,3 +9,9 @@
 ## Tests (Jest, Enzyme)
 
 `npm run test`
+
+## Code style (JSCS)
+
+`npm run style:check` for checkup only.
+
+`npm run style:fix` for also fixing what can be fixed.

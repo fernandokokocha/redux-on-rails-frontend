@@ -4,7 +4,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     return (
       <div>
@@ -12,5 +12,5 @@ class Home extends React.Component {
       </div>
     );
   }
-} 
+}
 export default Home;

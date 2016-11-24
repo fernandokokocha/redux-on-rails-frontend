@@ -7,7 +7,9 @@
     "test": "node_modules/jest-cli/bin/jest.js",
     "server": "node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build": "node_modules/webpack/bin/webpack.js",
-    "watch": "node_modules/webpack/bin/webpack.js --watch"
+    "watch": "node_modules/webpack/bin/webpack.js --watch",
+    "style:check": "node_modules/jscs/bin/jscs src",
+    "style:fix": "node_modules/jscs/bin/jscs src --fix"
   },
   "author": "Bartosz Krajka",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "babel-preset-react": "^6.16.0",
     "enzyme": "^2.6.0",
     "jest-cli": "^17.0.3",
+    "jscs": "^3.0.7",
     "react": "^15.4.0",
     "react-addons-test-utils": "^15.4.1",
     "react-bootstrap": "^0.30.7",

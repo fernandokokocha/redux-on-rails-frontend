@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { increment, decrement } from '../redux/actions'
+import { connect } from 'react-redux';
+import { increment, decrement } from '../redux/actions';
 
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 
-const buttonStyle = { display: 'block'}
+const buttonStyle = { display: 'block' };
 
 class Incrementer extends React.Component {
   render() {
@@ -19,25 +19,26 @@ class Incrementer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
+  return { 
     number: state.number
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onIncrement: () => {
-      dispatch(increment())
+      dispatch(increment());
     },
+
     onDecrement: () => {
-      dispatch(decrement())
-    }
-  }
-}
+      dispatch(decrement());
+    },
+  };
+};
 
 const IncrementerConnected = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Incrementer)
+)(Incrementer);
 
 export default IncrementerConnected;
