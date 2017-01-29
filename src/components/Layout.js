@@ -9,21 +9,13 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <div>
-        <Grid>
-          <Row>
-            <Col md={10} mdOffset={2}>
-              {this.props.children[0]}
-            </Col>
-          </Row>
-      
-          <Row>
-            <Col md={6} mdOffset={3}>
-              {this.props.children[1]}
-            </Col>
-          </Row>
-        </Grid>
-      </div>
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            {this.props.children}
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

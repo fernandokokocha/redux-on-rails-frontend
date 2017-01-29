@@ -1,23 +1,73 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
-import { Nav, NavItem } from 'react-bootstrap';
+import { loginUser, logoutUser } from '../redux/actions';
 
-const navStye = { marginBottom: '30px' };
+import * as userStatuses from '../constants/userStatuses';
 
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
+
+    this.renderNavigation = this.renderNavigation.bind(this);
+  }
+
+  renderNavigation() {
+    if (this.props.userStatus === userStatuses.LOGGED) {
+      return <Nav>
+        <NavItem disabled>Logged as {this.props.user.firstName}</NavItem>
+        <NavItem onClick={this.props.onLogoutClicked}>Logout</NavItem>
+      </Nav>;
+    } else {
+      return <Nav>
+        <NavItem onClick={this.props.onLoginClicked}>Login</NavItem>
+      </Nav>;
+    }
   }
 
   render() {
     return (
-      <Nav bsStyle="pills" activeKey={this.props.tab} style={navStye}>
-        <NavItem eventKey={1} onSelect={this.props.onSelect}>Home</NavItem>
-        <NavItem eventKey={2} onSelect={this.props.onSelect}>Incrementer</NavItem>
-      </Nav>
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a>Collective dinners</a>
+          </Navbar.Brand>
+        </Navbar.Header>
+        {this.renderNavigation()}
+      </Navbar>
     );
   }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    userStatus: state.userStatus,
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoginClicked: () => {
+      FB.login(function (response) {
+        FB.api('/me?fields=first_name,picture', function (response) {
+          dispatch(loginUser(response));
+        });
+      });
+    },
+
+    onLogoutClicked: () => {
+          FB.logout(function (response) {
+            dispatch(logoutUser());
+          });
+        },
+  };
+};
+
+const ConnectedNavigation = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navigation);
+
+export default ConnectedNavigation;
